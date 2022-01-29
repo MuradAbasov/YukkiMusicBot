@@ -18,23 +18,23 @@ from Yukki.Utilities.assistant import get_assistant_details
 
 loop = asyncio.get_event_loop()
 
-__MODULE__ = "Join/Leave"
+__MODULE__ = "Qoşulmaq/Tərk etmək"
 __HELP__ = """
 
-**Note:**
-Only for Sudo Users
+**Qeyd:**
+Yalnız Sudo İstifadəçiləri üçün
 
 
-/joinassistant [Chat Username or Chat ID]
-- Join assistant to a group.
+/joinassistant [Qrup adı və qrup id]
+- Assistenti qrupa əlavə edin.
 
 
-/leaveassistant [Chat Username or Chat ID]
-- Assistant will leave the particular group.
+/leaveassistant [Qrup adı və qrup id]
+- Assistent xüsusi söhbətdən ayrılacaq.
 
 
-/leavebot [Chat Username or Chat ID]
-- Bot will leave the particular chat.
+/leavebot [Qrup adı və qrup id]
+- Bot xüsusi söhbətdən ayrılacaq.
 """
 
 @app.on_callback_query(filters.regex("gback_list_chose_stream"))
@@ -45,7 +45,7 @@ async def gback_list_chose_stream(_, CallbackQuery):
     videoid, duration, user_id = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         return await CallbackQuery.answer(
-            "This is not for you! Search You Own Song.", show_alert=True
+            "Bu sənin üçün deyil!  Öz mahnını axtar.", show_alert=True
         )
     buttons = choose_markup(videoid, duration, user_id)
     await CallbackQuery.edit_message_reply_markup(
