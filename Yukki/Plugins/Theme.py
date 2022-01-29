@@ -34,10 +34,10 @@ __HELP__ = """
 
 
 /settheme
-- Set a theme for thumbnails.
+- Miniatürlər üçün mövzu təyin edin.
 
 /theme
-- Check Theme for your chat.
+- Söhbətiniz üçün mövzunu yoxlayın.
 """
 
 
@@ -45,7 +45,7 @@ __HELP__ = """
     filters.command(["settheme", f"settheme@{BOT_USERNAME}"]) & filters.group
 )
 async def settheme(_, message):
-    usage = f"This isn't a theme.\n\nSelect from them\n{' | '.join(themes)}\n\nUse 'Random' to get random choice of themes"
+    usage = f"Bu mövzu deyil.\n\n Birini seçin\n{' | '.join(themes)}\n\n Mövzuları təsadüfi əldə etmək istəyirsinizsə 'Random' istifadə edin."
     if len(message.command) != 2:
         return await message.reply_text(usage)
     theme = message.text.split(None, 1)[1].strip()
@@ -55,7 +55,7 @@ async def settheme(_, message):
         "theme": theme,
     }
     await save_theme(message.chat.id, "theme", note)
-    await message.reply_text(f"Changed thumbnail theme to {theme}")
+    await message.reply_text(f"Minuator mövzusu {theme} olaraq dəyişdirildi")
 
 
 @app.on_message(filters.command("theme"))
@@ -68,5 +68,5 @@ async def theme_func(_, message):
     else:
         theme = _note["theme"]
     await message.reply_text(
-        f"**{MUSIC_BOT_NAME} Thumbnails Theme**\n\n**Current Theme:-** {theme}\n\n**Available Themes:-** {' | '.join(themes2)} \n\nUse /settheme to change theme."
+        f"**{MUSIC_BOT_NAME} Miniatürlər mövzusu**\n\n**Cari mövzü:-** {theme}\n\n**Mövcud mövzular:-** {' | '.join(themes2)} \n\Mövzunu dəyişdirmək üçün /settheme istifadə edin."
     )
